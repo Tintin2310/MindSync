@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Platform Analytics</h2>
+<p>Total Questions: {{ total_questions }}</p>
+<p>Total Answers: {{ total_answers }}</p>
+<p>Tags Used: {{ tags | join(", ") }}</p>
+<h3>User Reputation</h3>
+<ul>
+    {% for user, reputation in user_reputation.items() %}
+    <li>{{ user }}: {{ reputation }} points</li>
+    {% endfor %}
+</ul>
+{% endblock %}

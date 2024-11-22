@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Questions</h2>
+<ul>
+    {% for question in questions %}
+    <li><a href="{{ url_for('view_question', question_id=question.id) }}">{{ question.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

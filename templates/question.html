@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ question.title }}</h2>
+<p>{{ question.content }}</p>
+<p><strong>Tags:</strong> {{ question.tags | join(", ") }}</p>
+
+<h3>Answers</h3>
+<ul>
+    {% for answer in answers %}
+    <li id="answer-{{ loop.index0 }}" style="margin-bottom: 20px;">
+        <p><strong>Answer:</strong> {{ answer.content }}</p>
+        <p><em>By: {{ answer.user }}</em></p>
+        <p>
+            <strong>AI Feedback:</strong> {{ answer.analysis }}
+        </p>
+        <p>
+            Upvotes: <span id="upvotes-{{ loop.index0 }}">{{ answer.upvotes }}</span> |
+            Downvotes: <span id="downvotes-{{ loop.index0 }}">{{ answer.downvotes }}</span>
+        </p>
+        <button onclick="vote('{{ question.id }}', '{{ loop.index0 }}', 'upvote')">Upvote</button>
+        <button onclick="vote('{{ question.id }}', '{{ loop.index0 }}', 'downvote')">Downvote</button>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Add an Answer</h3>
+<form method="POST">
+    <label for="response">Answer:</label>
+    <textarea name="response" required></textarea>
+    <br>
+    <label for="user">Your Name:</label>
+    <input type="text" name="user" required>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    async function vote(questionId, answerIndex, voteType) {
+        try {
+            const response = await fetch(`/vote/${questionId}/${answerIndex}/${voteType}`, {
+                method: "POST",
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                // Update the vote counts dynamically
+                document.getElementById(`upvotes-${answerIndex}`).textContent = result.answer.upvotes;
+                document.getElementById(`downvotes-${answerIndex}`).textContent = result.answer.downvotes;
+            } else {
+                alert("Error: " + result.error);
+            }
+        } catch (error) {
+            console.error("Error updating votes:", error);
+        }
+    }
+</script>
+{% endblock %}
