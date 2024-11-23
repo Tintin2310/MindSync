@@ -143,16 +143,26 @@ def comment_on_answer(question_id, answer_index):
 
 @app.route("/vote/<int:question_id>/<int:answer_index>/<vote_type>", methods=["POST"])
 def vote(question_id, answer_index, vote_type):
-    """Upvote or downvote an answer."""
+    """Upvote or downvote an answer and adjust user reputation."""
     try:
         answer = answers[question_id][answer_index]
+        user = answer["user"]  # Get the user associated with the answer
+
         if vote_type == "upvote":
             answer["upvotes"] += 1
+            user_reputation[user] = user_reputation.get(user, 0) + 10  # Increase points for upvote
         elif vote_type == "downvote":
             answer["downvotes"] += 1
-        return jsonify({"success": True, "answer": answer})
+            user_reputation[user] = user_reputation.get(user, 0) - 5  # Decrease points for downvote
+
+        # Ensure reputation doesn't go negative (optional)
+        if user_reputation[user] < 0:
+            user_reputation[user] = 0
+
+        return jsonify({"success": True, "answer": answer, "reputation": user_reputation[user]})
     except IndexError:
         return jsonify({"success": False, "error": "Answer not found"}), 404
+
 
 
 @app.route("/analytics")
