@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Questions</h2>
-<ul>
-    {% for question in questions %}
-    <li><a href="{{ url_for('view_question', question_id=question.id) }}">{{ question.title }}</a></li>
-    {% endfor %}
-</ul>
+<div class="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Questions</h2>
+    <ul class="space-y-4">
+        {% for question in questions %}
+        <li class="border-b border-gray-200 pb-4">
+            <a
+                href="{{ url_for('view_question', question_id=question.id) }}"
+                class="text-blue-600 font-medium hover:underline"
+            >
+                {{ question.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

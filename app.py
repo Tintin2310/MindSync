@@ -1,6 +1,9 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import google.generativeai as genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))

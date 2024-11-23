@@ -1,16 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Ask a Question</h2>
-<form method="POST">
-    <label for="title">Title:</label>
-    <input type="text" name="title" required>
-    <br>
-    <label for="content">Content:</label>
-    <textarea name="content" required></textarea>
-    <br>
-    <label for="user">Your Name:</label>
-    <input type="text" name="user" required>
-    <br>
-    <button type="submit">Submit</button>
-</form>
+<div class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-3xl font-extrabold text-gray-900 mb-8">Ask a Question</h2>
+    <form method="POST" class="space-y-8">
+        <!-- Title -->
+        <div class="space-y-2">
+            <label for="title" class="text-lg font-medium text-gray-700">Title</label>
+            <input
+                type="text"
+                name="title"
+                id="title"
+                required
+                class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg placeholder-gray-400"
+                placeholder="Enter your question title"
+            />
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-2">
+            <label for="content" class="text-lg font-medium text-gray-700">Content</label>
+            <textarea
+                name="content"
+                id="content"
+                rows="8"
+                required
+                class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg placeholder-gray-400"
+                placeholder="Write your detailed question here"
+            ></textarea>
+        </div>
+
+        <!-- Your Name -->
+        <div class="space-y-2">
+            <label for="user" class="text-lg font-medium text-gray-700">Your Name</label>
+            <input
+                type="text"
+                name="user"
+                id="user"
+                required
+                class="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg placeholder-gray-400"
+                placeholder="Enter your name"
+            />
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button
+                type="submit"
+                class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition duration-200 ease-in-out transform hover:scale-105"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Platform Analytics</h2>
-<p>Total Questions: {{ total_questions }}</p>
-<p>Total Answers: {{ total_answers }}</p>
-<p>Tags Used: {{ tags | join(", ") }}</p>
-<h3>User Reputation</h3>
-<ul>
-    {% for user, reputation in user_reputation.items() %}
-    <li>{{ user }}: {{ reputation }} points</li>
-    {% endfor %}
-</ul>
+<div class="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Platform Analytics</h2>
+    
+    <div class="space-y-4">
+        <p class="text-lg text-gray-700"><span class="font-semibold">Total Questions:</span> {{ total_questions }}</p>
+        <p class="text-lg text-gray-700"><span class="font-semibold">Total Answers:</span> {{ total_answers }}</p>
+        <p class="text-lg text-gray-700">
+            <span class="font-semibold">Tags Used:</span>
+            <span class="italic text-gray-800">{{ tags | join(", ") }}</span>
+        </p>
+    </div>
+
+    <h3 class="text-2xl font-semibold text-gray-700 mt-8">User Reputation</h3>
+    <ul class="mt-6 space-y-4">
+        {% for user, reputation in user_reputation.items() %}
+        <li class="flex justify-between items-center bg-gray-50 hover:bg-gray-100 p-4 rounded-lg shadow-sm transition-all duration-200">
+            <span class="text-lg font-medium text-gray-800">{{ user }}</span>
+            <span class="text-lg font-semibold text-gray-600">{{ reputation }} points</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

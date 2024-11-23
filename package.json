@@ -1,0 +1,16 @@
+{
+  "name": "MindSync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "dev": "concurrently \"pnpx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch\" \"flask run\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "tailwindcss": "^3.4.15"
+  }
+}
