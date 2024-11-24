@@ -6,21 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindSync</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
 
-<header class="bg-blue-600 text-white shadow-lg">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-3xl font-extrabold tracking-tight">MindSync</h1>
-        <nav class="space-x-6 text-lg">
-            <a href="{{ url_for('index') }}" class="hover:text-blue-300 transition duration-200">Home</a>
-            <a href="{{ url_for('ask_question') }}" class="hover:text-blue-300 transition duration-200">Ask</a>
-            <a href="{{ url_for('analytics') }}" class="hover:text-blue-300 transition duration-200">Analytics</a>
-        </nav>
-    </div>
-</header>
+    <header class="bg-blue-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- Rendered by Flask -->
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MindSync Logo" class="h-20 w-auto">
+                <h1 class="text-3xl font-extrabold tracking-tight">MindSync</h1>
+            </div>
+            <nav class="space-x-6 text-lg">
+                <a href="{{ url_for('index') }}" class="hover:text-blue-300 transition duration-200">Home</a>
+                <a href="{{ url_for('ask_question') }}" class="hover:text-blue-300 transition duration-200">Ask</a>
+                <a href="{{ url_for('analytics') }}" class="hover:text-blue-300 transition duration-200">Analytics</a>
+            </nav>
+        </div>
+    </header>
+    
 
 <main class="max-w-7xl mx-auto px-6 py-8">
     {% block content %}

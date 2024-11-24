@@ -554,6 +554,10 @@ video {
   display: none;
 }
 
+.static {
+  position: static;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -593,6 +597,14 @@ video {
 
 .flex {
   display: flex;
+}
+
+.h-20 {
+  height: 5rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .w-full {
